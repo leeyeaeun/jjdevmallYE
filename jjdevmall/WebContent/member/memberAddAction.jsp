@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import = "java.sql.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,12 +9,14 @@
 <body>
 <%
 request.setCharacterEncoding("utf-8");
-String mId = request.getParameter("m_id");
-String mPw = request.getParameter("m_pw");
-String mName = request.getParameter("m_name");
-int mAge = Integer.parseInt(request.getParameter("m_age"));
-String mSex = request.getParameter("m_sex");
-String mAddr = request.getParameter("m_addr");
+
+String mId = request.getParameter("mamberId");
+String mPw = request.getParameter("memberPw");
+String mName = request.getParameter("memberName");
+int mAge = Integer.parseInt(request.getParameter("memberAge"));
+String mSex = request.getParameter("memberSex");
+String mAddr = request.getParameter("memberAddr");
+
 Connection conn =null;
 PreparedStatement stmt1 = null;
 PreparedStatement stmt2 = null;
@@ -22,7 +24,7 @@ ResultSet rs = null;
 
 try{
 	Class.forName("com.mysql.jdbc.Driver");
-	String Url = "jdbc:mysql://127.0.0.1:3306/jjdevmall?useUnicode=true&characterEncoding=euckr";
+	String Url = "jdbc:mysql://127.0.0.1:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
 	String dbId = "root";
 	String dbPw = "java0000";
 	conn = DriverManager.getConnection(Url,dbId,dbPw);
@@ -35,6 +37,7 @@ try{
 	stmt1.setString(3,mName);
 	stmt1.setInt(4,mAge);
 	stmt1.setString(5,mSex);
+	
 	stmt1.executeUpdate();
 	
 	rs = stmt1.getGeneratedKeys();

@@ -31,20 +31,20 @@
 <h1> 회원가입 </h1>
 	<div>
 		<label>상품명 : </label>
-		<input type = "text" name = "insertName" id = "insertName">
+		<input  name = "insertName" id = "insertName" type = "text">
 		<span id = "insertNameHelper"></span>
 	</div>
 	<div>	
 		<label>상품가격 : </label>	
-		<input type = "text" name = "insertPrice"id = "insertPrice" >
+		<input name = "insertPrice"id = "insertPrice" type = "text"  >
 		<span id = "insertPriceHelper"></span>
 	</div>
 	<div>	
 		<label>할인율: </label>
-		<input type = "text" name = "insertRate"id = "insertRate" >
+		<input  name = "insertRate"id = "insertRate"  type = "text">
 		<span id = "insertRateHelper"></span>
 	</div>	
-		<input type = "button" value = "insert" id= "insertBtn">
+		<input id= "insertBtn" type = "button" value = "insert" >
 
 </form>	
 </body>
