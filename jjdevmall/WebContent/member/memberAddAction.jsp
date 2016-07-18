@@ -10,13 +10,15 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-String mId = request.getParameter("mamberId");
+String mId = request.getParameter("memberId");
 String mPw = request.getParameter("memberPw");
 String mName = request.getParameter("memberName");
 int mAge = Integer.parseInt(request.getParameter("memberAge"));
 String mSex = request.getParameter("memberSex");
 String mAddr = request.getParameter("memberAddr");
 
+out.print(mId + mAge+mPw+mName+mSex+mAddr);
+		
 Connection conn =null;
 PreparedStatement stmt1 = null;
 PreparedStatement stmt2 = null;
@@ -55,7 +57,8 @@ try{
 	stmt2.executeUpdate();
 	
 	conn.commit();
-
+	response.sendRedirect(request.getContextPath()+"/admin/member/memberListAll01.jsp");
+	
 }catch(Exception e){//예외시
 		conn.rollback();//롤백
 		e.printStackTrace();//롤백일시 콘솔에 뭘 출력해줌

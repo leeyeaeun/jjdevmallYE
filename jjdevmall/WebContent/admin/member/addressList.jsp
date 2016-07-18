@@ -45,7 +45,7 @@ try {
 		while (PrintRs.next()) {
 			String addr = PrintRs.getString("member_address"); 
 
-			if(addr==null){//왜 안되는 지 모르겠어요 
+			if(addr==null){
 				%>	
 				<td>입력한 주소가 없습니다.</td>
 				<%	
