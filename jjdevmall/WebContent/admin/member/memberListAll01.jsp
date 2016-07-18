@@ -36,6 +36,7 @@ table, td {border : 1px solid pink}
 		
 		conn.commit();
 %>
+<h1>회원리스트</h1>
 <form>
 <table>
 	<tr>

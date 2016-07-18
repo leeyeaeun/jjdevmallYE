@@ -12,13 +12,13 @@ table, td {border : 1px solid pink}
 <body>
 <%
 request.setCharacterEncoding("utf-8");
-String memberNo = request.getParameter("sandNomber");
+int memberNo = Integer.parseInt(request.getParameter("sandNomber"));
 System.out.print(memberNo+"<<<<memberNo");
 
 Connection conn = null;
 PreparedStatement stmt = null;
 ResultSet PrintRs = null;
-String sql = "select * from address where member_no = ?";
+String sql = "SELECT * FROM member LEFT JOIN address on member.member_no = address.member_no  where member.member_no = ?";
 
 try {
 	Class.forName("com.mysql.jdbc.Driver");
@@ -29,23 +29,32 @@ try {
 	conn.setAutoCommit(false);
 	
 	stmt = conn.prepareStatement(sql);
-	stmt.setString(1,memberNo);
+	stmt.setInt(1,memberNo);
 	PrintRs = stmt.executeQuery();
 	
 	conn.commit();
 %>
+<h1>회원주소</h1>
 <form>
 <table>
 	<tr>
 		<td>주소</td>	
 	</tr>
+	<tr>
 <%
 		while (PrintRs.next()) {
-%>	
-			<tr>
-				<td><%=PrintRs.getString("member_address") %></td>	
-			</tr>
-<%	
+			String addr = PrintRs.getString("member_address"); 
+
+			if(addr==null){//왜 안되는 지 모르겠어요 
+				%>	
+				<td>입력한 주소가 없습니다.</td>
+				<%	
+			}else{
+				%>	
+				<td><%= addr %></td>
+				</tr>
+				<%						
+			}
 		}
 } catch (Exception e) {//예외시
 	conn.rollback();//롤백
@@ -64,8 +73,6 @@ try {
 		} catch (SQLException ex) {
 		}
 }
-
-
 %>
 </table>
 </form>
