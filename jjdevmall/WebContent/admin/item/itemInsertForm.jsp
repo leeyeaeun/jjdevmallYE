@@ -30,22 +30,23 @@
 <form id = "insertForm" action ="<%=request.getContextPath()%>/admin/item/itemInsertAction.jsp">
 <h1> 회원가입 </h1>
 	<div>
-		<label>상품명 : </label>
+		<label for = "insertName">상품명 : </label>
 		<input  name = "insertName" id = "insertName" type = "text">
 		<span id = "insertNameHelper"></span>
 	</div>
 	<div>	
-		<label>상품가격 : </label>	
+		<label for = "insertPrice">상품가격 : </label>	
 		<input name = "insertPrice"id = "insertPrice" type = "text"  >
 		<span id = "insertPriceHelper"></span>
 	</div>
 	<div>	
-		<label>할인율: </label>
+		<label for ="insertRate" >할인율: </label>
 		<input  name = "insertRate"id = "insertRate"  type = "text">
 		<span id = "insertRateHelper"></span>
-	</div>	
+	</div>
+	<div>
 		<input id= "insertBtn" type = "button" value = "insert" >
-
+	</div>	
 </form>	
 </body>
 </html>

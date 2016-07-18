@@ -26,6 +26,7 @@ try{
 	String dbId = "root";
 	String dbPw = "java0000";
 	conn = DriverManager.getConnection(Url,dbId,dbPw);
+	System.out.println(conn +"<<<conn");
 	
 	conn.setAutoCommit(false);
 	
