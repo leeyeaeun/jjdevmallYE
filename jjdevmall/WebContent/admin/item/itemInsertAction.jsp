@@ -37,10 +37,14 @@ conn.commit();
 }catch(Exception e){//예외시
 	conn.rollback();//롤백
 	e.printStackTrace();//롤백일시 콘솔에 뭘 출력해줌
-}finally{
-	if(stmt!=null){
-		
-	}
+} finally {
+	// 6. 사용한 Statement 종료
+	if (stmt != null) try { stmt.close(); } catch(SQLException ex) {}
+	
+	// 7. 커넥션 종료
+	if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+
+
 }
 %>
 
