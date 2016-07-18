@@ -37,6 +37,10 @@ conn.commit();
 }catch(Exception e){//예외시
 	conn.rollback();//롤백
 	e.printStackTrace();//롤백일시 콘솔에 뭘 출력해줌
+}finally{
+	if(stmt!=null){
+		
+	}
 }
 %>
 

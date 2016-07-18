@@ -15,7 +15,10 @@
 				$('#i_nameHelper').text('');
 			}else if($('#i_rate').val()==''){
 				$('#i_priceHelper').text('');
-				$('#i_rateHelper').text('할인율을 입력하세요');	
+				$('#i_rateHelper').text('할인율을 입력하세요');
+			}else if($('#i_rate').val()>=1){
+				$('#i_rateHelper').text('');
+				$('#i_rateHelper').text('1보다 큰수는 입력할수 없습니다.');	
 			}else{
 				$('#insertForm').submit();
 			}
