@@ -15,9 +15,11 @@ String mPw = request.getParameter("memberPw");
 String mName = request.getParameter("memberName");
 int mAge = Integer.parseInt(request.getParameter("memberAge"));
 String mSex = request.getParameter("memberSex");
-String mAddr = request.getParameter("memberAddr");
 
-out.print(mId + mAge+mPw+mName+mSex+mAddr);
+String[] mAddr2 = request.getParameterValues("addrAdd");
+
+out.print(mId + mAge+mPw+mName+mSex);
+out.print(mAddr2);
 		
 Connection conn =null;
 PreparedStatement stmt1 = null;
@@ -50,11 +52,21 @@ try{
 
 	System.out.println(key+"<<<<<<lastKey");
 	
-	String sql2 = "insert into address(member_no,member_address) values(?,?)";
+	if(mAddr2 != null){// 입력이 하나가 누락됨.. 왜지
+		String sql2= "insert into address(member_no,member_address) values(?,?)";
+	
+		for(int i = 0; i<mAddr2.length; i++){//familyRelation이 복수일경우 모두 입력하기위해 반복문으로 배열의 길이만큼 실행
+			stmt2= conn.prepareStatement(sql2);
+			stmt2.setInt(1,key);
+			stmt2.setString(2,mAddr2[i]);
+			stmt2.executeUpdate();
+		}
+	}
+	/* String sql2 = "insert into address(member_no,member_address) values(?,?)";
 	stmt2 = conn.prepareStatement(sql2);
 	stmt2.setInt(1,key);
 	stmt2.setString(2,mAddr);
-	stmt2.executeUpdate();
+	stmt2.executeUpdate(); */
 	
 	conn.commit();
 	response.sendRedirect(request.getContextPath()+"/admin/member/memberListAll01.jsp");

@@ -6,7 +6,22 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 <script>
+var html = '<div><input type = "text" class = "addrAdd" name = "addrAdd" id = "addrAdd"></div>'
 	$(document).ready(function(){
+		$('#memberAdd').click(function(){//familyRelation이 공백이아니면 추가가능 //familyListHelper// 가족추가를 누르지않고 add버튼을 누르면 넘어가야함
+			var flag = false;
+			$('.addrAdd').each(function(index,item){
+				if($(this).val()==''){
+				flag = true;
+				}
+			});
+			if(flag){
+				$('#addrListHelper').text('추가주소를 입력하세요!');
+			}else{
+				$('#addrList').append(html);
+			}
+		});	
+		
 		$('#insertBtn').click(function(){
 			if($('#memberId').val()==''){
 				$('#memberIdHelper').text('아이디를 입력하세요');
@@ -68,10 +83,19 @@
 	</div>
 	<div>	
 	<label>주소 : </label>
-	<input type = "text" name = "memberAddr" id = "memberAddr">
+	<input type = "text"  class = "addrAdd">
 	<span id = "memberAddrHelper"></span>
+		<div>
+			<input type = "button" id = "memberAdd" value = "주소추가"/>
+			<input type = "button" id = "memberDel" value = "주소삭제"/>
+		</div>
+		<div id ="addrList" >
+		
+		</div>
+		<span id = "addrListHelper"></span>	
 	</div>
 	<input type = "button" value = "insert" id= "insertBtn">
+	
 	
 </form>	
 </body>
