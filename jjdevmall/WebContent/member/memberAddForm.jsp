@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -36,32 +36,43 @@
 </script>
 </head>
 <body> 
-<form id = "insertForm" action ="./memberAddAction.jsp">
+<form id = "insertForm" action ="<%=request.getContextPath()%>/member/memberAddAction.jsp"> <!-- 절대주소가 좋음 -->
 <h1> 회원가입 </h1>
-<div>
-	<label>아이디 : </label>
-	<input type = "text" name = "m_id" id = "m_id">
-	<span id = "m_idHelper"></span><hr><br><br>
-	<label>비밀번호 : </label>	
-	<input type = "text" name = "m_pw"id = "m_pw" ><br/>
-	<label>비밀번호 확인 : </label>
-	<input type = "text" name = "m_pw2"id = "m_pw2" >
-	<span id = "m_pwHelper"></span><hr><br><br>
-	<label>이름 : </label>
-	<input type = "text" name = "m_name"id = "m_name" >
-	<span id = "m_nameHelper"></span><hr><br><br>
-	<label>나이 : </label>
-	<input type = "text" name = "m_age" id = "m_age">
-	<span id = "m_ageHelper"></span><hr><br><br>
-	<label>성별 : </label>
-	<input type = "radio" name = "m_sex" class = "m_sex" value = "남">남
-	<input type = "radio" name = "m_sex" class = "m_sex" value = "여">여
-	<span id = "m_sexHelper"></span><hr><br><br>
+	<div>
+		<label for= "m_id">아이디 : </label>
+		<input type = "text" name = "m_id" id = "m_id">  <!-- 이와같이 줄여서 변수를 선언하는것은 좋지않음 memberId와 같이 쓰는것이 좋음-->
+		<span id = "m_idHelper"></span>
+	</div>
+	<div>
+		<label>비밀번호 : </label>	
+		<input type = "password" name = "m_pw"id = "m_pw" ><br/>
+		<label>비밀번호 확인 : </label>
+		<input type = "password" name = "m_pw2"id = "m_pw2" >
+		<span id = "m_pwHelper"></span>
+	</div>
+	<div>
+		<label>이름 : </label>
+		<input type = "text" name = "m_name"id = "m_name" >
+		<span id = "m_nameHelper"></span>
+	</div>
+	<div>
+		<label>나이 : </label>
+		<input type = "text" name = "m_age" id = "m_age">
+		<span id = "m_ageHelper"></span>
+	</div>
+	<div>
+		<label>성별 : </label>
+		<input type = "radio" name = "m_sex" class = "m_sex" value = "남">남
+		<input type = "radio" name = "m_sex" class = "m_sex" value = "여">여
+		<span id = "m_sexHelper"></span>
+	</div>
+	<div>	
 	<label>주소 : </label>
 	<input type = "text" name = "m_addr" id = "m_addr">
-	<span id = "m_addrHelper"></span><hr><br><br>
+	<span id = "m_addrHelper"></span>
+	</div>
 	<input type = "button" value = "insert" id= "insertBtn">
-</div>	
+	
 </form>	
 </body>
 </html>

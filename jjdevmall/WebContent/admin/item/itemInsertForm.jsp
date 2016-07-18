@@ -8,17 +8,17 @@
 <script>
 	$(document).ready(function(){
 		$('#insertBtn').click(function(){
-			if($('#i_name').val()==''){
-				$('#i_nameHelper').text('상품명을 입력하세요');
-			}else if($('#i_price').val()==''){
-				$('#i_priceHelper').text('가격을 입력하세요');
-				$('#i_nameHelper').text('');
-			}else if($('#i_rate').val()==''){
-				$('#i_priceHelper').text('');
-				$('#i_rateHelper').text('할인율을 입력하세요');
-			}else if($('#i_rate').val()>=1){
-				$('#i_rateHelper').text('');
-				$('#i_rateHelper').text('1보다 큰수는 입력할수 없습니다.');	
+			if($('#insertName').val()==''){
+				$('#insertNameHelper').text('상품명을 입력하세요');
+			}else if($('#insertprice').val()==''){
+				$('#insertPriceHelper').text('가격을 입력하세요');
+				$('#insertNameHelper').text('');
+			}else if($('#insertRate').val()==''){
+				$('#insertPriceHelper').text('');
+				$('#insertRateHelper').text('할인율을 입력하세요');
+			}else if($('#insertRate').val()>=1){
+				$('#insertRateHelper').text('');
+				$('#insertRateHelper').text('1보다 큰수는 입력할수 없습니다.');	
 			}else{
 				$('#insertForm').submit();
 			}
@@ -27,21 +27,25 @@
 </script>
 </head>
 <body> 
-<form id = "insertForm" action ="./itemInsertAction.jsp">
+<form id = "insertForm" action ="<%=request.getContextPath()%>/admin/item/itemInsertAction.jsp">
 <h1> 회원가입 </h1>
-<div>
-	<label>상품명 : </label>
-	<input type = "text" name = "i_name" id = "i_name">
-	<span id = "i_nameHelper"></span><hr><br><br>
-	<label>상품가격 : </label>	
-	<input type = "text" name = "i_price"id = "i_price" >
-	<span id = "i_priceHelper"></span><hr><br><br>
-	<label>할인율: </label>
-	<input type = "text" name = "i_rate"id = "i_rate" >
-	<span id = "i_rateHelper"></span><hr><br><br>
-	
-	<input type = "button" value = "insert" id= "insertBtn">
-</div>	
+	<div>
+		<label>상품명 : </label>
+		<input type = "text" name = "insertName" id = "insertName">
+		<span id = "insertNameHelper"></span>
+	</div>
+	<div>	
+		<label>상품가격 : </label>	
+		<input type = "text" name = "insertPrice"id = "insertPrice" >
+		<span id = "insertPriceHelper"></span>
+	</div>
+	<div>	
+		<label>할인율: </label>
+		<input type = "text" name = "insertRate"id = "insertRate" >
+		<span id = "insertRateHelper"></span>
+	</div>	
+		<input type = "button" value = "insert" id= "insertBtn">
+
 </form>	
 </body>
 </html>
