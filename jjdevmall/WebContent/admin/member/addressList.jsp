@@ -45,17 +45,12 @@ try {
 		while (PrintRs.next()) {
 			String addr = PrintRs.getString("member_address"); 
 
-			if(addr==null){
-				%>	
-				<td>입력한 주소가 없습니다.</td>
-				<%	
-			}else{
-				%>	
+				%>
 				<td><%= addr %></td>
 				</tr>
 				<%						
 			}
-		}
+		
 } catch (Exception e) {//예외시
 	conn.rollback();//롤백
 	e.printStackTrace();//롤백일시 콘솔에 뭘 출력해줌

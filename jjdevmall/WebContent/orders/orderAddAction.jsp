@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
-<!DOCTYPE html> <!-- 5.0양식으로 템플릿이 왜 어디갔지  -->
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,11 +11,12 @@
 <%
 request.setCharacterEncoding("UTF-8");
 
-String insertName = request.getParameter("insertName");
-String insertPrice = request.getParameter("insertPrice");
-String insertRate = request.getParameter("insertRate");
+String memberNo = (String)session.getAttribute("memberNo");
+int itemNo = Integer.parseInt(request.getParameter("itemNo"));
+String ordersQuantity = request.getParameter("ordersQuantity");
+String ratedPrice = request.getParameter("ratedPrice");
 
-System.out.println(insertName+","+insertPrice+","+insertRate);
+System.out.println(memberNo+","+itemNo+","+ordersQuantity+","+ratedPrice);
 
 Connection conn = null;
 PreparedStatement stmt = null;
@@ -30,16 +31,19 @@ try{
 	
 	conn.setAutoCommit(false);
 	
-	String sql = "insert into item(item_name,item_price,item_rate) values(?,?,?)";
-	stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-	stmt.setString(1,insertName);
-	stmt.setString(2,insertPrice);
-	stmt.setString(3,insertRate);
+	String sql = "INSERT INTO orders (item_no, member_no, orders_quantity, orders_rate, orders_date) VALUES (?, ?, ?, ?, SYSDATE())";
+	stmt = conn.prepareStatement(sql);
+	stmt.setInt(1,itemNo);
+	stmt.setString(2,memberNo);
+	stmt.setString(3,ordersQuantity);
+	stmt.setString(4,ratedPrice);
+
 	
+	System.out.println(sql);
 	stmt.executeUpdate();
 	
 	conn.commit();
-	response.sendRedirect(request.getContextPath()+"/admin/item/itemList.jsp");
+	//response.sendRedirect(request.getContextPath()+"/admin/item/itemList.jsp");
 
 }catch(Exception e){//예외시
 	conn.rollback();//롤백
@@ -51,6 +55,5 @@ try{
 	if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 }
 %>
-
 </body>
 </html>

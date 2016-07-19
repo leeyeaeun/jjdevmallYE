@@ -6,9 +6,9 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 <script>
-var html = '<div><input type = "text" class = "addrAdd" name = "addrAdd" id = "addrAdd"></div>'
+var html = '<div><input type = "text" class = "addrAdd" name = "addrAdd"></div>'
 	$(document).ready(function(){
-		$('#memberAdd').click(function(){//familyRelation이 공백이아니면 추가가능 //familyListHelper// 가족추가를 누르지않고 add버튼을 누르면 넘어가야함
+		$('#memberAdd').click(function(){
 			var flag = false;
 			$('.addrAdd').each(function(index,item){
 				if($(this).val()==''){
@@ -83,7 +83,7 @@ var html = '<div><input type = "text" class = "addrAdd" name = "addrAdd" id = "a
 	</div>
 	<div>	
 	<label>주소 : </label>
-	<input type = "text"  class = "addrAdd">
+	<input type = "text"  class = "addrAdd" name = "addrAdd">
 	<span id = "memberAddrHelper"></span>
 		<div>
 			<input type = "button" id = "memberAdd" value = "주소추가"/>
