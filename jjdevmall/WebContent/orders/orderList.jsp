@@ -1,23 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>전체member select</title>
+<title>orderList</title>
 </head>
 <style>
 table, td {border : 1px solid pink}
 </style>
 <body>
-<% // 주문이 가능하게 
+<% 
 	request.setCharacterEncoding("utf-8");
 
 	Connection connction = null;
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
-	String sql = "Select * from item";
+	
+	String sql = "select * from orders";
 	
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -33,25 +33,31 @@ table, td {border : 1px solid pink}
 				
 		connction.commit();
 %>
-<h1>상품리스트</h1>
+<h1>주문리스트</h1>
 <form>
 <table>
 	<tr>
+		<td>주문번호</td>
 		<td>상품번호</td>
-		<td>상품명</td>
-		<td>상품가격</td>
-		<td>할인률</td>
-		<td>주문</td>
+		<td>주문자번호</td>
+		<td>수량</td>
+		<td>가격</td>
+		<td>주문일</td>
+		<td>주문상세</td>
+		
+		
 	</tr>
 	<%
 		while (resultSet.next()) {
 	%>
 	<tr>
-		<td><%=resultSet.getInt("item_no")%></td>
-		<td><%=resultSet.getString("item_name")%></td>
-		<td><%=resultSet.getInt("item_price")%></td>
-		<td><%=resultSet.getDouble("item_rate")%></td>
-		<td><a href ="<%=request.getContextPath()%>/orders/orderAddForm.jsp?itemNo=<%=resultSet.getInt("item_no")%>&itemName=<%=resultSet.getString("item_name")%>&itemPrice=<%=resultSet.getInt("item_price")%>&itemRate=<%=resultSet.getDouble("item_rate")%>">주문하기</a></td>
+		<td><%=resultSet.getInt("orders_no")%></td>
+		<td><%=resultSet.getString("item_no")%></td>
+		<td><%=resultSet.getInt("member_no")%></td>
+		<td><%=resultSet.getDouble("orders_quantity")%></td>
+		<td><%=resultSet.getDouble("orders_rate")%></td>
+		<td><%=resultSet.getString("orders_date")%></td>
+		<td><%=resultSet.getString("orders_state")%></td>
 	</tr>
 	<%
 		}

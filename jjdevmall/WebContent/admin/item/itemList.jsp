@@ -34,7 +34,7 @@ table, td {border : 1px solid pink}
 				
 		connction.commit();
 %>
-<h1>회원리스트</h1>
+<h1>상품리스트</h1>
 <form>
 <table>
 	<tr>

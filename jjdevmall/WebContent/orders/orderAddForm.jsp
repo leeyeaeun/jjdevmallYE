@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 <script>
-$(document).ready(function(){
+$(document).ready(function(){//수량 * 가격 구해서 totalprice에 총가격 나타내기
 	$('#ordersQuantity').blur(function(){
 		if($('#ordersQuantity').val()!=null){
 			$('#totalPrice').text($('#ordersQuantity').val()*$('#ratedPrice').val());
@@ -23,18 +23,16 @@ $(document).ready(function(){
 </head>
 <body>
 <%
-String memberId = (String)session.getAttribute("memberId");//세션로그인 안되있으면 로그인시키려고 확인함 int itemNo = Integer.parseInt(request.getParameter("itemNo"));
+String memberId = (String)session.getAttribute("memberId");//세션로그인 안되있으면 로그인시키려고 확인함 
 int itemNo = Integer.parseInt(request.getParameter("itemNo"));
 int itemPrice = Integer.parseInt(request.getParameter("itemPrice"));
 Double itemRate = Double.parseDouble(request.getParameter("itemRate"));
 
-
-if(memberId==null){
-	//response.sendRedirect(request.getContextPath()+"/index.jsp");
+if(memberId==null){//로그인 안되어있으면 index로 보내버린다 
+	response.sendRedirect(request.getContextPath()+"/index.jsp");
 }else{
-	//주문폼
-	//jdbc코드 item select Query // 할인률같은거 가져옴
-	//int itemRate = ?   where item_no = ?
+//원래는 jdbc코드 item select Query를 가져오려고 했으나 어차피 itemList에 있는거라서 그냥 받아옴 
+//주문폼
 %>
 	<form id = "orderForm" action = "<%=request.getContextPath()%>/orders/orderAddAction.jsp" >
 		<div>

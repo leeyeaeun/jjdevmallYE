@@ -43,7 +43,8 @@ try{
 	stmt.executeUpdate();
 	
 	conn.commit();
-	//response.sendRedirect(request.getContextPath()+"/admin/item/itemList.jsp");
+	response.sendRedirect(request.getContextPath()+"/orders/orderList.jsp");
+	//원래는 전체상품리스트로 연결하는게아니고 member_no가 session에 저장된거랑 같은거만 보여줘야 함
 
 }catch(Exception e){//예외시
 	conn.rollback();//롤백
